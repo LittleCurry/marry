@@ -1,0 +1,21 @@
+me_photo:
+  test:
+    baseConfig:
+      serviceName: me_photo_test
+      env: test
+      httpPort: :7780
+    redisAddr: 127.0.0.1:6379
+    mongoAddr: localhost:27017/bt_prod
+    dbDsn: root:liyunpeng@tcp(127.0.0.1:3306)/siiva?charset=utf8
+    bindAddr: :7781
+
+  prod:
+    baseConfig:
+      serviceName: me_photo_prod
+      env: prod
+      httpPort: :80
+    redisAddr: 172.16.63.91:6379
+    mongoAddr: siiva:siiva0901@production.mongodb.rds.aliyuncs.com:3717/bt_prod
+    dbDsn: siiva:Siiva0901@tcp(rm-bp18m8cj51tv01v0h.mysql.rds.aliyuncs.com:3306)/siiva?charset=utf8
+    bindAddr: :81
+
