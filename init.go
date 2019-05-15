@@ -3,9 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gitlab.com/SiivaVideoStudio/cloud_server/misc/helpers"
-	"gitlab.com/SiivaVideoStudio/cloud_server/misc/driver"
-	"gitlab.com/SiivaVideoStudio/cloud_server/me_photo/config"
+
+	"github.com/LittleCurry/marry/config"
+	"github.com/LittleCurry/misc/helpers"
+	"github.com/LittleCurry/misc/driver"
 )
 
 /**

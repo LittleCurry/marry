@@ -3,7 +3,7 @@ package config
 import (
 	"github.com/spf13/viper"
 	"fmt"
-	"gitlab.com/SiivaVideoStudio/cloud_server/misc/helpers"
+	"github.com/LittleCurry/misc/helpers"
 )
 
 var (
@@ -45,13 +45,8 @@ type appConf struct {
 	MongoAddr string
 	DbDsn     string
 	BindAddr  string
-
-	//SmsGatewayServer string
-	//LockServer       string
-	//QrcodeServer     string
-	//UserServer       string
 }
 
 func (this *appConf) GetName() string {
-	return "me_photo"
+	return "marry"
 }
