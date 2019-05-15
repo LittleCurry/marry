@@ -16,15 +16,15 @@ import (
 
 func GetUserInfo(c *gin.Context) {
 
-	user_id := c.Query("user_id")
+	//user_id := c.Query("user_id")
 
-	if len(user_id) == 0 {
-		c.JSON(http.StatusOK, err_msg.CodeMsg{1, "user_id不能为空"})
-		return
-	}
-	fmt.Println("user_id:", user_id)
-	res := vm.UserRes{"xiaoming", "123123"}
-	c.JSON(http.StatusOK, res)
+	//if len(user_id) == 0 {
+	//	c.JSON(http.StatusOK, err_msg.CodeMsg{1, "user_id不能为空"})
+	//	return
+	//}
+	//fmt.Println("user_id:", user_id)
+	//res := vm.UserRes{"xiaoming", "123123"}
+	//c.JSON(http.StatusOK, res)
 
 	return
 
