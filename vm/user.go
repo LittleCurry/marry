@@ -1,7 +1,7 @@
 package vm
 
 type UserRes struct {
-	Id           string    `json:"id"`
+	Id           int    `json:"id"`
 	UserId       string `json:"user_id"`
 	Phone        string `json:"phone"`
 	UserName     string `json:"user_name"`
