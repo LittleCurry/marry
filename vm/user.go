@@ -1,17 +1,18 @@
 package vm
 
 type UserRes struct {
-	Id           string `json:"id"`
+	Id           string    `json:"id"`
 	UserId       string `json:"user_id"`
 	Phone        string `json:"phone"`
 	UserName     string `json:"user_name"`
-	Gender       string `json:"gender"`
+	Gender       int    `json:"gender"`
 	Birthday     string `json:"birthday"`
 	Address      string `json:"address"`
 	Wxopenid     string `json:"wxopenid"`
 	Head         string `json:"head"`
 	Introduction string `json:"introduction"`
 	CreateTime   string `json:"create_time"`
+	UpdateTime   string `json:"update_time"`
 }
 type CreateUserReq struct {
 	NickName string `json:"user_name"`
