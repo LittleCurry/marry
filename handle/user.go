@@ -75,7 +75,9 @@ func UserList(c *gin.Context) {
 	if err != nil {
 		fmt.Println("err:", err)
 	}
-	c.JSON(http.StatusOK, users)
+	usersRes := []vm.UserRes{}
+	copier.Copy(&usersRes, users)
+	c.JSON(http.StatusOK, usersRes)
 
 }
 func DeleteUser(c *gin.Context) {

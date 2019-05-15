@@ -76,7 +76,7 @@ func init() {
 
 func main() {
 
-	fmt.Println("me_photo server :", time.Now().Format("2006-01-02 15:04"))
+	fmt.Println("marry server :", time.Now().Format("2006-01-02 15:04"))
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default() //获得路由实例
 	router.Use(globals.Cors())
