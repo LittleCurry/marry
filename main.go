@@ -92,7 +92,7 @@ func main() {
 
 	/* user */
 	router.GET("/user", handle.GetUserInfo)
-	router.POST("/user/creat", handle.CreateUser)
+	router.POST("/user/create", handle.CreateUser)
 	router.GET("/user/info", handle.GetUserInfo)
 	router.GET("user/list", handle.UserList)
 	router.POST("user/delete", handle.DeleteUser)
