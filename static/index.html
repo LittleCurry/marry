@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息提交</title>
+</head>
+<body>
+<form name="login_form" action="/server_url" method="post">
+    <!--ID：<input id="username" type="text" name="username"/>-->
+    <!--Password：<input id="password" type="password" name="password"/>-->
+    用户名：<input id="user_name" type="text" name="user_name"/>
+    手机：<input id="phone" type="text" name="phone"/>
+    性别：<input id="gender" type="text" name="gender"/>
+    生日：<input id="birthday" type="text" name="birthday"/>
+    住址：<input id="address" type="text" name="address"/>
+    简介：<input id="introduction" type="text" name="introduction"/>
+</form>
+<button id="btn-submit" onclick="beforeSubmit()">Submit</button>
+<script type="text/javascript">
+    function beforeSubmit() {
+        var user_name = document.getElementById('user_name').value;
+        var phone = document.getElementById('phone').value;
+        var gender = document.getElementById('gender').value;
+        var birthday = document.getElementById('birthday').value;
+        var address = document.getElementById('address').value;
+        var introduction = document.getElementById('introduction').value;
+        // if (username.length < 6 || password.length < 6) {
+        //     alert('格式不正确！');
+        //     return;
+        // }
+
+        // 1.创建一个FormData对象，直接把我们的表单传进去
+        var formData = new FormData(document.forms.namedItem("login_form"));
+        formData.user_name = user_name
+        formData.phone = phone
+        formData.gender = gender
+        formData.birthday = birthday
+        formData.address = address
+        formData.introduction = introduction
+
+        // 2.创建一个http请求对象
+        var xmlHttpRequest = new XMLHttpRequest();
+
+        xmlHttpRequest.open('post', 'https://media.siiva.com/user/create');
+        // xmlHttpRequest.setRequestHeader('Origin', "*")
+        xmlHttpRequest.onload = function (resp) {
+            if (xmlHttpRequest.status == 200) {
+                alert('提交成功！');
+            } else {
+                alert('Error:' + xmlHttpRequest.status);
+            }
+        };
+        xmlHttpRequest.send(formData);
+    }
+</script>
+</body>
+</html>
