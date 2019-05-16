@@ -66,8 +66,6 @@ func initOrm() {
 	driver.OrmInit(config.AppConf.DbDsn)
 }
 
-
-
 func init() {
 	parseFlag()
 	loadConfig()
@@ -88,7 +86,6 @@ func main() {
 
 	/* 微信认证文件 */
 	router.GET("/MP_verify_FouzvrsIEmpFd5dU.txt", func(c *gin.Context) { c.File("./resource/MP_verify_FouzvrsIEmpFd5dU.txt"); return })
-
 
 	/* user */
 	router.GET("/user", handle.GetUserInfo)
