@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>个人信息提交</title>
 </head>
+
 <body>
+
 <form name="login_form" action="/server_url" method="post">
     姓名：<input id="user_name" type="text" name="user_name"/>
     手机：<input id="phone" type="text" name="phone"/>
@@ -15,8 +18,10 @@
     简介：<input id="introduction" type="text" name="introduction"/>
 </form>
 <button id="btn-submit" onclick="beforeSubmit()">Submit</button>
+
 <script type="text/javascript">
     function beforeSubmit() {
+
         var user_name = document.getElementById('user_name').value;
         var phone = document.getElementById('phone').value;
         var passwd = document.getElementById('passwd').value;
@@ -24,10 +29,6 @@
         var birthday = document.getElementById('birthday').value;
         var address = document.getElementById('address').value;
         var introduction = document.getElementById('introduction').value;
-        // if (username.length < 6 || password.length < 6) {
-        //     alert('格式不正确！');
-        //     return;
-        // }
 
         // 1.创建一个FormData对象，直接把我们的表单传进去
         var formData = new FormData(document.forms.namedItem("login_form"));
@@ -40,25 +41,16 @@
         formData.introduction = introduction
 
         // 2.创建一个http请求对象
-        var xmlHttpRequest = new XMLHttpRequest();
+        var req = new XMLHttpRequest();
+        req.open('post', 'https://media.siiva.com/user/create');
+        req.onload = function (resp) {
 
-        xmlHttpRequest.open('post', 'https://media.siiva.com/user/create');
-        xmlHttpRequest.onload = function (resp) {
-            var info = resp.code == 1 ? resp.info : '提交成功'
+            var jsonRes = JSON.parse(req.responseText);
+            var info = jsonRes.code == 1 ? jsonRes.info : "提交成功"
             alert(info)
 
-            // if (resp.code == 1) {
-            //     alert(resp.info)
-            // } else {
-            //     alert()
-            // }
-            // if (xmlHttpRequest.status == 200) {
-            //     alert('提交成功！');
-            // } else {
-            //     alert(resp.info);
-            // }
         };
-        xmlHttpRequest.send(formData);
+        req.send(formData);
     }
 </script>
 </body>
