@@ -10,6 +10,9 @@ import (
 	"github.com/LittleCurry/marry/vm"
 	"github.com/LittleCurry/misc/model"
 	"github.com/LittleCurry/misc/driver"
+	"github.com/LittleCurry/misc/globals"
+	"regexp"
+	"github.com/LittleCurry/misc/err_msg"
 )
 
 func GetUserInfo(c *gin.Context) {
@@ -39,6 +42,7 @@ func CreateUser(c *gin.Context) {
 
 	user_name := c.PostForm("user_name")
 	phone := c.PostForm("phone")
+	passwd := c.PostForm("passwd")
 	gender := c.PostForm("gender")
 	birthday := c.PostForm("birthday")
 	address := c.PostForm("address")
@@ -46,10 +50,19 @@ func CreateUser(c *gin.Context) {
 
 	fmt.Println("user_name:", user_name)
 	fmt.Println("phone:", phone)
+	fmt.Println("passwd:", passwd)
 	fmt.Println("gender:", gender)
 	fmt.Println("birthday:", birthday)
 	fmt.Println("address:", address)
 	fmt.Println("introduction:", introduction)
+
+
+	reg := `^1([38][0-9]|14[579]|5[^4]|16[6]|7[1-35-8]|9[189])\d{8}$`
+	rgx := regexp.MustCompile(reg)
+	if !rgx.MatchString(phone) {
+		c.JSON(http.StatusOK, err_msg.CodeMsg{1,"手机号格式错误"})
+		return
+	}
 
 	//if err1 != nil {
 	//	fmt.Println("err1:", err1)
@@ -58,11 +71,10 @@ func CreateUser(c *gin.Context) {
 	//}
 
 	user := model.User{}
-	//copier.Copy(&user, createReq)
 	user.UserId = strconv.Itoa(int(time.Now().Unix()))
 	user.UserName = user_name
 	user.Phone = phone
-	//user.Gender = gender
+	user.Passwd = globals.MakeMd5FromString(passwd)
 	user.Birthday = birthday
 	user.Address = address
 	user.Introduction = introduction

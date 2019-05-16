@@ -6,12 +6,11 @@
 </head>
 <body>
 <form name="login_form" action="/server_url" method="post">
-    <!--ID：<input id="username" type="text" name="username"/>-->
-    <!--Password：<input id="password" type="password" name="password"/>-->
-    用户名：<input id="user_name" type="text" name="user_name"/>
+    姓名：<input id="user_name" type="text" name="user_name"/>
     手机：<input id="phone" type="text" name="phone"/>
+    密码：<input id="passwd" type="text" name="passwd"/>
     性别：<input id="gender" type="text" name="gender"/>
-    生日：<input id="birthday" type="text" name="birthday"/>
+    生日：<input id="birthday" type="date" name="birthday"/>
     住址：<input id="address" type="text" name="address"/>
     简介：<input id="introduction" type="text" name="introduction"/>
 </form>
@@ -20,6 +19,7 @@
     function beforeSubmit() {
         var user_name = document.getElementById('user_name').value;
         var phone = document.getElementById('phone').value;
+        var passwd = document.getElementById('passwd').value;
         var gender = document.getElementById('gender').value;
         var birthday = document.getElementById('birthday').value;
         var address = document.getElementById('address').value;
@@ -33,6 +33,7 @@
         var formData = new FormData(document.forms.namedItem("login_form"));
         formData.user_name = user_name
         formData.phone = phone
+        formData.passwd = passwd
         formData.gender = gender
         formData.birthday = birthday
         formData.address = address
@@ -42,13 +43,20 @@
         var xmlHttpRequest = new XMLHttpRequest();
 
         xmlHttpRequest.open('post', 'https://media.siiva.com/user/create');
-        // xmlHttpRequest.setRequestHeader('Origin', "*")
         xmlHttpRequest.onload = function (resp) {
-            if (xmlHttpRequest.status == 200) {
-                alert('提交成功！');
-            } else {
-                alert('Error:' + xmlHttpRequest.status);
-            }
+            var info = resp.code == 1 ? resp.info : '提交成功'
+            alert(info)
+
+            // if (resp.code == 1) {
+            //     alert(resp.info)
+            // } else {
+            //     alert()
+            // }
+            // if (xmlHttpRequest.status == 200) {
+            //     alert('提交成功！');
+            // } else {
+            //     alert(resp.info);
+            // }
         };
         xmlHttpRequest.send(formData);
     }
