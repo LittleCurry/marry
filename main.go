@@ -80,7 +80,7 @@ func main() {
 	router.Use(globals.Cors())
 
 	// apidoc避免被路由到notfount
-	router.NoRoute(static.Serve("", static.LocalFile("./static/index.html", false)))
+	router.NoRoute(static.Serve("", static.LocalFile("./static", false)))
 	version := "version: 0.1.0." + time.Now().Format("20060102.1504")
 	router.GET("/version", func(c *gin.Context) { c.String(http.StatusOK, version) })
 
@@ -91,8 +91,8 @@ func main() {
 	router.GET("/user", handle.GetUserInfo)
 	router.POST("/user/create", handle.CreateUser)
 	router.GET("/user/info", handle.GetUserInfo)
-	router.GET("user/list", handle.UserList)
-	router.POST("user/delete", handle.DeleteUser)
+	router.GET("/user/list", handle.UserList)
+	router.POST("/user/delete", handle.DeleteUser)
 
 	router.Run(config.AppConf.HttpPort)
 
