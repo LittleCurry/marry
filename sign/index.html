@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <meta charset="UTF-8">
     <title>个人信息提交</title>
@@ -8,16 +9,58 @@
 
 <body>
 
-<form name="login_form" action="/server_url" method="post">
-    姓名：<input id="user_name" type="text" name="user_name"/>
-    手机：<input id="phone" type="text" name="phone"/>
-    密码：<input id="passwd" type="text" name="passwd"/>
-    性别：<input id="gender" type="text" name="gender"/>
-    生日：<input id="birthday" type="date" name="birthday"/>
-    住址：<input id="address" type="text" name="address"/>
-    简介：<input id="introduction" type="text" name="introduction"/>
+<form name="login_form" action="/server_url" method="post"
+      style="text-align:center; width: 80%; height: 100%; background-color: aquamarine; padding-top: 10px; padding-bottom: 10px; margin-left: 10%;">
+
+    <div style="width: 100%; height: 44px">
+        <span style="width: 10%; height: 100%;">姓名</span><input id="user_name" type="text" name="user_name"
+                                                                style="width: 90%; height: 100%"/>
+    </div>
+    <br/>
+
+    <div style="width: 100%; height: 44px">
+        <span style="width: 10%; height: 100%;">手机</span><input id="phone" type="number" name="phone"
+                                                                style="width: 90%; height: 100%"/>
+    </div>
+    <br/>
+
+    <div style="width: 100%; height: 44px">
+        <span style="width: 10%; height: 100%;">密码</span><input id="passwd" type="text" name="passwd"
+                                                                style="width: 90%; height: 100%"/>
+    </div>
+    <br/>
+
+    <div style="width: 100%; height: 44px">
+
+        <span style="width: 10%; height: 100%;">性别</span>
+        <span style="width: 40%; height: 100%"><input type="radio" name="gender" value=0/>男</span>
+        <span style="width: 40%; height: 100%"><input type="radio" name="gender" value=1/>女</span>
+    </div>
+    <br/>
+
+    <div style="width: 100%; height: 44px">
+        <span style="width: 10%; height: 100%;">生日</span><input id="birthday" type="date" name="birthday"
+                                                                style="width: 90%; height: 100%"/>
+    </div>
+    <br/>
+
+    <div style="width: 100%; height: 44px">
+        <span style="width: 10%; height: 100%;">住址</span><input id="address" type="text" name="address"
+                                                                style="width: 90%; height: 100%"/>
+    </div>
+    <br/>
+
+    <div style="width: 100%; height: 44px">
+        <span style="width: 10%; height: 100%;">简介</span><input id="introduction" type="text" name="introduction"
+                                                                style="width: 90%; height: 100%"/>
+    </div>
+    <br/>
+
+
 </form>
-<button id="btn-submit" onclick="beforeSubmit()">Submit</button>
+<button id="btn-submit" onclick="beforeSubmit()" style="margin-left: 10%; margin-top: 10px; width: 80%; height: 44px;">提交</button>
+<!--<div style="width: 80%; height: 44px; background-color: #00AA22">-->
+<!--</div>-->
 
 <script type="text/javascript">
     function beforeSubmit() {
@@ -25,10 +68,18 @@
         var user_name = document.getElementById('user_name').value;
         var phone = document.getElementById('phone').value;
         var passwd = document.getElementById('passwd').value;
-        var gender = document.getElementById('gender').value;
+
         var birthday = document.getElementById('birthday').value;
         var address = document.getElementById('address').value;
         var introduction = document.getElementById('introduction').value;
+
+        var gender = 0
+        var obj = document.getElementsByName("gender");
+        for(var i=0; i<obj.length; i ++){
+            if(obj[i].checked){
+                gender = obj[i].value
+            }
+        }
 
         // 1.创建一个FormData对象，直接把我们的表单传进去
         var formData = new FormData(document.forms.namedItem("login_form"));
@@ -53,5 +104,8 @@
         req.send(formData);
     }
 </script>
+
 </body>
+
+
 </html>
