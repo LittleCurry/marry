@@ -10,15 +10,15 @@
 
 <body>
 
-<div>
-    <tr id="user_table" class="user_table">
-        <td style="width: 15%; color: blue">姓名</td>
-        <td style="width: 15%">电话</td>
-        <td style="width: 15%">性别</td>
-        <td style="width: 15%">年龄</td>
-        <td style="width: 15%">操作</td>
+<table id="user_table" style="width: 100%; background-color: floralwhite">
+    <tr>
+        <td style="width: 15%; text-align: center; color: #00AA22">姓名</td>
+        <td style="width: 15%; text-align: center; color: #00AA22">电话</td>
+        <td style="width: 15%; text-align: center; color: #00AA22">性别</td>
+        <td style="width: 15%; text-align: center; color: #00AA22">年龄</td>
+        <td style="width: 15%; text-align: center; color: #00AA22">操作</td>
     </tr>
-</div>
+</table>
 
 <script type="text/javascript">
     var req = new XMLHttpRequest();
@@ -26,17 +26,30 @@
     req.onload = function (resp) {
         var jsonRes = JSON.parse(req.responseText);
         console.log('jsonRes:', jsonRes)
-        var currentDiv = document.getElementById("user_table");
 
         for (var i in  jsonRes) {
-            // document.writel(jsonRes[i].user_name + ' ' + jsonRes[i].phone + ' ' + jsonRes[i].gender + ' ' + jsonRes[i].birthday + ' ' + "<br/>");
-            var newDiv = document.createElement("div");
-            var newContent = document.createTextNode(jsonRes[i].user_name + ' ' + jsonRes[i].phone + ' ' + jsonRes[i].gender + ' ' + jsonRes[i].birthday);
-            newDiv.appendChild(newContent);
-            document.body.insertBefore(newDiv, currentDiv);
+
+            var op1 = document.getElementsByTagName('table')[0];
+            var str = '<td style="width: 15%; text-align: center">' + jsonRes[i].user_name + '</td>';
+            str += '<td style="width: 15%; text-align: center">' + jsonRes[i].phone + '</td>';
+            str += '<td style="width: 15%; text-align: center">' + replaceGender(jsonRes[i].gender) + '</td>';
+            str += '<td style="width: 15%; text-align: center">' + replaceBirthday(jsonRes[i].birthday) + '</td>';
+            str += '<td style="width: 15%; text-align: center"> <button>删除</button></td>';
+            op1.innerHTML += str
         }
     };
     req.send();
+
+    function replaceGender(gender) {
+        return gender == 0 ? '男' : '女'
+    }
+
+    function replaceBirthday(birthday) {
+
+        var date = new Date;
+        var year = date.getFullYear();
+        return year - new Date(birthday).getFullYear()
+    }
 
 
 </script>
