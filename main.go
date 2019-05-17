@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
-	"net/http"
 	"time"
 	"github.com/LittleCurry/misc/globals"
 	"github.com/LittleCurry/marry/handle"
 	"github.com/LittleCurry/marry/config"
 	"github.com/LittleCurry/misc/driver"
 	"github.com/LittleCurry/misc/helpers"
+	"net/http"
 )
 
 var (
@@ -80,7 +80,9 @@ func main() {
 	router.Use(globals.Cors())
 
 	// apidoc避免被路由到notfount
-	router.NoRoute(static.Serve("/sign", static.LocalFile("./sign", false)))
+	//router.NoRoute(static.Serve("", static.LocalFile("./sign", false)))
+	router.Static("/sign", "./sign")
+	router.NoRoute(static.Serve("", static.LocalFile("./sign", false)))
 	router.NoRoute(static.Serve("/admin", static.LocalFile("./admin", false)))
 	version := "version: 0.1.0." + time.Now().Format("20060102.1504")
 	router.GET("/version", func(c *gin.Context) { c.String(http.StatusOK, version) })
