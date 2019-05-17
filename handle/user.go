@@ -64,12 +64,6 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
-	//if err1 != nil {
-	//	fmt.Println("err1:", err1)
-	//	c.JSON(http.StatusOK, err_msg.CodeMsg{Code: 1, Info: "请求参数格式错误"})
-	//	return
-	//}
-
 	user := model.User{}
 	user.UserId = strconv.Itoa(int(time.Now().Unix()))
 	user.UserName = user_name

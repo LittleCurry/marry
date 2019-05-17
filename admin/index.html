@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>管理</title>
+</head>
+
+
+<body>
+
+<div>
+    <tr id="user_table" class="user_table">
+        <td style="width: 15%; color: blue">姓名</td>
+        <td style="width: 15%">电话</td>
+        <td style="width: 15%">性别</td>
+        <td style="width: 15%">年龄</td>
+        <td style="width: 15%">操作</td>
+    </tr>
+</div>
+
+<script type="text/javascript">
+    var req = new XMLHttpRequest();
+    req.open('get', 'https://media.siiva.com/user/list');
+    req.onload = function (resp) {
+        var jsonRes = JSON.parse(req.responseText);
+        console.log('jsonRes:', jsonRes)
+        var currentDiv = document.getElementById("user_table");
+
+        for (var i in  jsonRes) {
+            // document.writel(jsonRes[i].user_name + ' ' + jsonRes[i].phone + ' ' + jsonRes[i].gender + ' ' + jsonRes[i].birthday + ' ' + "<br/>");
+            var newDiv = document.createElement("div");
+            var newContent = document.createTextNode(jsonRes[i].user_name + ' ' + jsonRes[i].phone + ' ' + jsonRes[i].gender + ' ' + jsonRes[i].birthday);
+            newDiv.appendChild(newContent);
+            document.body.insertBefore(newDiv, currentDiv);
+        }
+    };
+    req.send();
+
+
+</script>
+</body>
+
+
+</html>

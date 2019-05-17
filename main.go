@@ -81,6 +81,7 @@ func main() {
 
 	// apidoc避免被路由到notfount
 	router.NoRoute(static.Serve("/", static.LocalFile("./static", false)))
+	router.NoRoute(static.Serve("/admin", static.LocalFile("./admin", false)))
 	version := "version: 0.1.0." + time.Now().Format("20060102.1504")
 	router.GET("/version", func(c *gin.Context) { c.String(http.StatusOK, version) })
 
