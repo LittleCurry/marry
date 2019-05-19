@@ -91,11 +91,10 @@ func main() {
 	router.GET("/MP_verify_FouzvrsIEmpFd5dU.txt", func(c *gin.Context) { c.File("./resource/MP_verify_FouzvrsIEmpFd5dU.txt"); return })
 
 	/* user */
-	router.GET("/user", handle.GetUserInfo)
 	router.POST("/user/create", handle.CreateUser)
 	router.GET("/user/info", handle.GetUserInfo)
 	router.GET("/user/list", handle.UserList)
-	router.POST("/user/del", handle.DeleteUser)
+	router.GET("/user/del", handle.DeleteUser)
 
 	router.Run(config.AppConf.HttpPort)
 
