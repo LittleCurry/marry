@@ -87,7 +87,7 @@ func CreateUser(c *gin.Context) {
 func UserList(c *gin.Context) {
 
 	users := []model.User{}
-	err := driver.MySQL().Find(&users)
+	err := driver.MySQL().Where("`del` = 0").Find(&users)
 	if err != nil {
 		fmt.Println("err:", err)
 	}
@@ -98,4 +98,18 @@ func UserList(c *gin.Context) {
 }
 func DeleteUser(c *gin.Context) {
 
+	userId := c.Query("user_id")
+	fmt.Println("userId:", userId)
+	if len(userId) == 0 {
+		c.JSON(http.StatusOK, err_msg.CodeMsg{1, "user_id不能为空"})
+		return
+	}
+	_, err1 := driver.MySQL().Where("user_id=?", userId).Update(&model.User{Del: 1})
+	if err1 != nil {
+		fmt.Println("err1:", err1)
+		c.JSON(http.StatusOK, err_msg.CodeMsg{1, "删除失败"})
+		return
+	}
+	c.JSON(http.StatusOK, err_msg.CodeMsg{0, "删除成功"})
+	return
 }

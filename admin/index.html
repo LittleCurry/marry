@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%; width: 100%">
 
 
 <head lang="en">
@@ -8,33 +8,40 @@
 </head>
 
 
-<body>
+<body style="height: 100%; width: 100%">
 
-<table id="user_table" style="width: 100%; background-color: floralwhite">
+<table id="user_table" style="width: 100%; height: 100%; background-color: floralwhite; overflow-x:hidden; overflow-y:auto">
     <tr>
-        <td style="width: 15%; text-align: center; color: #00AA22">姓名</td>
-        <td style="width: 15%; text-align: center; color: #00AA22">电话</td>
-        <td style="width: 15%; text-align: center; color: #00AA22">性别</td>
-        <td style="width: 15%; text-align: center; color: #00AA22">年龄</td>
-        <td style="width: 15%; text-align: center; color: #00AA22">操作</td>
+        <td style="width: 15%; height: 60px; text-align: center; color: #00AA22">姓名</td>
+        <td style="width: 15%; height: 60px; text-align: center; color: #00AA22">电话</td>
+        <td style="width: 15%; height: 60px; text-align: center; color: #00AA22">性别</td>
+        <td style="width: 15%; height: 60px; text-align: center; color: #00AA22">年龄</td>
+        <td style="width: 15%; height: 60px; text-align: center; color: #00AA22">操作</td>
     </tr>
 </table>
 
 <script type="text/javascript">
+
+    var jsonRes = []
+
     var req = new XMLHttpRequest();
     req.open('get', 'https://media.siiva.com/user/list');
     req.onload = function (resp) {
-        var jsonRes = JSON.parse(req.responseText);
+        jsonRes = JSON.parse(req.responseText);
         console.log('jsonRes:', jsonRes)
 
         for (var i in  jsonRes) {
 
             var op1 = document.getElementsByTagName('table')[0];
-            var str = '<td style="width: 15%; text-align: center">' + jsonRes[i].user_name + '</td>';
-            str += '<td style="width: 15%; text-align: center">' + jsonRes[i].phone + '</td>';
-            str += '<td style="width: 15%; text-align: center">' + replaceGender(jsonRes[i].gender) + '</td>';
-            str += '<td style="width: 15%; text-align: center">' + replaceBirthday(jsonRes[i].birthday) + '</td>';
-            str += '<td style="width: 15%; text-align: center"> <button>删除</button></td>';
+
+            // var user_id = jsonRes[i].user_id
+            // console.log('user_id:', user_id)
+
+            var str = '<td style="width: 15%; height: 60px; text-align: center">' + jsonRes[i].user_name + '</td>';
+            str += '<td style="width: 15%; height: 60px; text-align: center">' + jsonRes[i].phone + '</td>';
+            str += '<td style="width: 15%; height: 60px; text-align: center">' + replaceGender(jsonRes[i].gender) + '</td>';
+            str += '<td style="width: 15%; height: 60px; text-align: center">' + replaceBirthday(jsonRes[i].birthday) + '</td>';
+            str += '<td style="width: 15%; height: 60px; text-align: center"> <button onclick="delUser('  + i + ',' + jsonRes[i].user_id +  ')">删除</button></td>';
             op1.innerHTML += str
         }
     };
@@ -49,6 +56,35 @@
         var date = new Date;
         var year = date.getFullYear();
         return year - new Date(birthday).getFullYear()
+    }
+
+    function delUser(index,user_id) {
+
+        console.log('index:', index)
+        console.log('user_id:', user_id)
+
+        var x=document.getElementById("user_table");
+        x.deleteRow(index+1);//删除一行
+
+        var req = new XMLHttpRequest();
+        req.open('get', 'https://media.siiva.com/user/del?user_id=', user_id);
+        req.onload = function (resp) {
+            var jsonRes = JSON.parse(req.responseText);
+            var info = jsonRes.code == 1 ? jsonRes.info : "删除成功"
+            alert(info)
+
+            if (jsonRes.code == 0){
+                var x=document.getElementById("user_table");
+                x.deleteRow(index+1);//删除一行
+                var req = new XMLHttpRequest();
+                req.open('get', 'https://media.siiva.com/user/list');
+                req.onload = function (resp) {
+                    jsonRes = JSON.parse(req.responseText);
+                }
+
+            }
+        }
+
     }
 
 
