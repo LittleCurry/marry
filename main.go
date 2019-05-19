@@ -95,7 +95,7 @@ func main() {
 	router.POST("/user/create", handle.CreateUser)
 	router.GET("/user/info", handle.GetUserInfo)
 	router.GET("/user/list", handle.UserList)
-	router.POST("/user/delete", handle.DeleteUser)
+	router.POST("/user/del", handle.DeleteUser)
 
 	router.Run(config.AppConf.HttpPort)
 
