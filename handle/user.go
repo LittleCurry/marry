@@ -52,7 +52,8 @@ func CreateUser(c *gin.Context) {
 
 
 	fileHeader, err1 := c.FormFile("head")
-	location := "./img/" + fileHeader.Filename
+	timeStr := strconv.Itoa(int(time.Now().Unix()))
+	location := "./img/" + timeStr
 	if err1 != nil {
 		fmt.Println("err1:", err1)
 	}
@@ -102,7 +103,7 @@ func CreateUser(c *gin.Context) {
 	user.Birthday = birthday
 	user.Address = address
 	user.Introduction = introduction
-	user.Head = "https://media.siiva.com/img/"+fileHeader.Filename
+	user.Head = "https://media.siiva.com/img/"+timeStr
 	user.CreateTime = time.Now().Format("2006-01-02 15:04:05")
 	user.UpdateTime = time.Now().Format("2006-01-02 15:04:05")
 
