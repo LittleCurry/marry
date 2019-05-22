@@ -15,6 +15,7 @@ import (
 	"github.com/LittleCurry/misc/err_msg"
 	"os"
 	"io"
+	"strings"
 )
 
 func GetUserInfo(c *gin.Context) {
@@ -52,7 +53,8 @@ func CreateUser(c *gin.Context) {
 
 
 	fileHeader, err1 := c.FormFile("head")
-	timeStr := strconv.Itoa(int(time.Now().Unix()))
+	strArr := strings.Split(fileHeader.Filename, ".")
+	timeStr := strconv.Itoa(int(time.Now().Unix())) + "." + strArr[len(strArr)-1]
 	location := "./img/" + timeStr
 	if err1 != nil {
 		fmt.Println("err1:", err1)
