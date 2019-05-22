@@ -31,7 +31,6 @@
     <br/>
 
     <div style="width: 100%; height: 5%">
-
         <span style="width: 10%; ">性别</span>
         <span style="width: 40%; "><input type="radio" name="gender" value=0/>男</span>
         <span style="width: 40%; "><input type="radio" name="gender" value=1/>女</span>
@@ -50,20 +49,31 @@
     </div>
     <br/>
 
-    <div style="width: 100%; height: 20%">
+    <div style="width: 100%; height: 10%">
         <span style="width: 10%;">简介</span><input id="introduction" type="text" name="introduction"
                                                   style="width: 90%; height: 100%"/>
     </div>
     <br/>
 
+    <div style="width: 100%; height: 10%">
+        <span style="width: 10%">照片</span><input id="file_upload" type="file"  name="file_upload" #Image accept="image/*" style="margin-left: 20% ;width: 70%; height: 100%"/>
+    </div>
+
+    <br/>
+
 
 </form>
 <button id="btn-submit" onclick="beforeSubmit()" style="margin-left: 10%; margin-top: 10px; width: 80%; height: 44px;">提交</button>
-<!--<div style="width: 80%; height: 44px; background-color: #00AA22">-->
-<!--</div>-->
+
 
 <script type="text/javascript">
     function beforeSubmit() {
+
+        var head_img = document.getElementById('file_upload').files[0];
+
+        // file.item(0);
+        // console.log('file_upload:', file_upload)
+        // oMyForm.append("userfile", fileInputElement.files[0])
 
         var user_name = document.getElementById('user_name').value;
         var phone = document.getElementById('phone').value;
@@ -90,6 +100,7 @@
         formData.birthday = birthday
         formData.address = address
         formData.introduction = introduction
+        formData.append('head', head_img, head_img.name)
 
         // 2.创建一个http请求对象
         var req = new XMLHttpRequest();
