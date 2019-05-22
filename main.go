@@ -96,6 +96,10 @@ func main() {
 	router.GET("/user/list", handle.UserList)
 	router.GET("/user/del", handle.DeleteUser)
 
+	/* file */
+	router.GET("/img/:name", handle.GetImage)
+
+
 	router.Run(config.AppConf.HttpPort)
 
 }

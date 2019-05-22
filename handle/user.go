@@ -13,6 +13,8 @@ import (
 	"github.com/LittleCurry/misc/globals"
 	"regexp"
 	"github.com/LittleCurry/misc/err_msg"
+	"os"
+	"io"
 )
 
 func GetUserInfo(c *gin.Context) {
@@ -48,6 +50,33 @@ func CreateUser(c *gin.Context) {
 	address := c.PostForm("address")
 	introduction := c.PostForm("introduction")
 
+
+	fileHeader, err1 := c.FormFile("head")
+	location := "./img/" + fileHeader.Filename
+	if err1 != nil {
+		fmt.Println("err1:", err1)
+	}
+	file, err2 := fileHeader.Open()
+	if err2 != nil {
+		fmt.Println("err2:", err2)
+	}
+	saveFile, err4 := os.Create(location)
+	if err4 != nil {
+		fmt.Println("err4:", err4)
+	}
+	defer saveFile.Close()
+
+	_, err5 := io.Copy(saveFile, file)
+	if err5 != nil {
+		fmt.Println("err5:", err5)
+	}
+	chmodErr := os.Chmod(location, os.ModePerm)
+	if chmodErr != nil {
+		fmt.Println("chmodErr:", chmodErr)
+	}
+
+
+
 	fmt.Println("user_name:", user_name)
 	fmt.Println("phone:", phone)
 	fmt.Println("passwd:", passwd)
@@ -55,6 +84,7 @@ func CreateUser(c *gin.Context) {
 	fmt.Println("birthday:", birthday)
 	fmt.Println("address:", address)
 	fmt.Println("introduction:", introduction)
+	fmt.Println("head:", fileHeader.Filename)
 
 
 	reg := `^1([38][0-9]|14[579]|5[^4]|16[6]|7[1-35-8]|9[189])\d{8}$`
@@ -72,12 +102,13 @@ func CreateUser(c *gin.Context) {
 	user.Birthday = birthday
 	user.Address = address
 	user.Introduction = introduction
+	user.Head = "https://media.siiva.com/img/"+fileHeader.Filename
 	user.CreateTime = time.Now().Format("2006-01-02 15:04:05")
 	user.UpdateTime = time.Now().Format("2006-01-02 15:04:05")
 
-	_, err2 := driver.MySQL().Insert(&user)
-	if err2 != nil {
-		fmt.Println("err2:", err2)
+	_, err3 := driver.MySQL().Insert(&user)
+	if err3 != nil {
+		fmt.Println("err3:", err3)
 	}
 
 	c.JSON(http.StatusOK, user)
