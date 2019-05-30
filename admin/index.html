@@ -13,7 +13,7 @@
 <table id="user_table"
        style="width: 100%; height: 100%; background-color: floralwhite; overflow-x:hidden; overflow-y:auto; ">
     <tr>
-        <td style="width: 15%; height: 80px; horiz-align: center; text-align: center; color: #00AA22">头像</td>
+        <td style="width: 80px; height: 80px; horiz-align: center; text-align: center; color: #00AA22">头像</td>
         <td style="width: 10%; height: 80px; horiz-align: center; text-align: center; color: #00AA22">姓名</td>
         <td style="width: 15%; height: 80px; horiz-align: center; text-align: center; color: #00AA22">电话</td>
         <td style="width: 5%; height: 80px; horiz-align: center; text-align: center; color: #00AA22">性别</td>
@@ -35,7 +35,7 @@
         for (var i in  jsonRes) {
 
             var op1 = document.getElementsByTagName('table')[0];
-            var str = '<td style="width: 80px; height: 80px;">' + '<img src="' + jsonRes[i].head + '" style="width: 100%; height: 80px;"/>' + '</td>';
+            var str = '<td style="width: 80px; height: 80px;">' + '<img src="' + jsonRes[i].head + '" style="width: 100%; height: 100%;"/>' + '</td>';
             str += '<td style="width: 10%; height: 80px; font-size: 30px ">' + jsonRes[i].user_name + '</td>';
             str += '<td style="width: 15%; height: 80px; font-size: 30px ">' + jsonRes[i].phone + '</td>';
             str += '<td style="width: 5%; height: 80px; font-size: 30px ">' + replaceGender(jsonRes[i].gender) + '</td>';
