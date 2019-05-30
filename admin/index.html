@@ -39,12 +39,12 @@
             var bgColor = count == 0 ? 'mediumturquoise' : 'floralwhite'
 
             var op1 = document.getElementsByTagName('table')[0];
-            var str = '<td style="width: 10%; height: 80px; padding-top: 20px; background-color:' + bgColor +'">' + '<img src="' + jsonRes[i].head + '" style="width: 100%; height: 100%;"/>' + '</td>';
-            str += '<td style="width: 10%; height: 80px; font-size: 35px; padding-top: 20px; background-color: '+ bgColor +'">' + jsonRes[i].user_name + '</td>';
-            str += '<td style="width: 15%; height: 80px; font-size: 35px; padding-top: 20px; background-color:'+ bgColor +'">' + jsonRes[i].phone + '</td>';
-            str += '<td style="width: 5%; height: 80px; font-size: 35px; padding-top: 20px; background-color:'+ bgColor +'">' + replaceGender(jsonRes[i].gender) + '</td>';
-            str += '<td style="width: 5%; height: 80px; font-size: 35px; padding-top: 20px; background-color:'+ bgColor +' ">' + replaceBirthday(jsonRes[i].birthday) + '</td>';
-            str += '<td style="width: 15%; height: 80px; font-size: 35px; padding-top: 20px; background-color:'+ bgColor +' "> <button style="width: 60%; height: 80px; font-size: 35px" onclick="delUser(' + i + ',' + jsonRes[i].user_id + ')">删除</button></td>';
+            var str = '<td style="width: 10%; height: 80px; margin-top: 20px; background-color:' + bgColor +'">' + '<img src="' + jsonRes[i].head + '" style="width: 100%; height: 100%;"/>' + '</td>';
+            str += '<td style="width: 10%; height: 80px; font-size: 35px; margin-top: 20px; background-color: '+ bgColor +'">' + jsonRes[i].user_name + '</td>';
+            str += '<td style="width: 15%; height: 80px; font-size: 35px; margin-top: 20px; background-color:'+ bgColor +'">' + jsonRes[i].phone + '</td>';
+            str += '<td style="width: 5%; height: 80px; font-size: 35px; margin-top: 20px; background-color:'+ bgColor +'">' + replaceGender(jsonRes[i].gender) + '</td>';
+            str += '<td style="width: 5%; height: 80px; font-size: 35px; margin-top: 20px; background-color:'+ bgColor +' ">' + replaceBirthday(jsonRes[i].birthday) + '</td>';
+            str += '<td style="width: 15%; height: 80px; font-size: 35px; margin-top: 20px; background-color:'+ bgColor +' "> <button style="width: 60%; height: 80px; font-size: 35px" onclick="delUser(' + i + ',' + jsonRes[i].user_id + ')">删除</button></td>';
 
             op1.innerHTML += str
 
