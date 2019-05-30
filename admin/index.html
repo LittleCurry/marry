@@ -13,12 +13,12 @@
 <table id="user_table"
        style="width: 100%; height: 100%; background-color: white; overflow-x:hidden; overflow-y:auto; text-align: center;  border-spacing:0px 20px;">
     <tr>
-        <td style="width: 80px; height: 100px; horiz-align: center; text-align: center; color: #00AA22">头像</td>
-        <td style="width: 10%; height: 80px; horiz-align: center; text-align: center; color: #00AA22">姓名</td>
-        <td style="width: 15%; height: 80px; horiz-align: center; text-align: center; color: #00AA22">电话</td>
-        <td style="width: 5%; height: 80px; horiz-align: center; text-align: center; color: #00AA22">性别</td>
-        <td style="width: 5%; height: 80px; horiz-align: center; text-align: center; color: #00AA22">年龄</td>
-        <td style="width: 15%; height: 80px; horiz-align: center; text-align: center; color: #00AA22">操作</td>
+        <td style="width: 80px; height: 100px; font-size: 44px;  horiz-align: center; text-align: center; color: #00AA22">头像</td>
+        <td style="width: 10%; height: 80px; font-size: 44px; horiz-align: center; text-align: center; color: #00AA22">姓名</td>
+        <td style="width: 15%; height: 80px; font-size: 44px; horiz-align: center; text-align: center; color: #00AA22">电话</td>
+        <td style="width: 5%; height: 80px; font-size: 44px; horiz-align: center; text-align: center; color: #00AA22">性别</td>
+        <td style="width: 5%; height: 80px; font-size: 44px; horiz-align: center; text-align: center; color: #00AA22">年龄</td>
+        <td style="width: 15%; height: 80px; font-size: 44px; horiz-align: center; text-align: center; color: #00AA22">操作</td>
     </tr>
 </table>
 
@@ -39,12 +39,12 @@
             var bgColor = count == 0 ? 'mediumturquoise' : 'floralwhite'
 
             var op1 = document.getElementsByTagName('table')[0];
-            var str = '<tr><td style="width: 10%; height: 100px; background-color:' + bgColor +'">' + '<img src="' + jsonRes[i].head + '" style="width: 100%; height: 100%;"/>' + '</td>';
-            str += '<td style="width: 10%; height: 100px; font-size: 35px; background-color: '+ bgColor +'">' + jsonRes[i].user_name + '</td>';
-            str += '<td style="width: 15%; height: 100px; font-size: 35px; background-color:'+ bgColor +'">' + jsonRes[i].phone + '</td>';
-            str += '<td style="width: 5%; height: 100px; font-size: 35px; background-color:'+ bgColor +'">' + replaceGender(jsonRes[i].gender) + '</td>';
-            str += '<td style="width: 5%; height: 100px; font-size: 35px; background-color:'+ bgColor +' ">' + replaceBirthday(jsonRes[i].birthday) + '</td>';
-            str += '<td style="width: 15%; height: 100px; font-size: 35px; background-color:'+ bgColor +' "> <button style="width: 60%; height: 80px; font-size: 35px" onclick="delUser(' + i + ',' + jsonRes[i].user_id + ')">删除</button></td></tr>';
+            var str = '<tr><td style="width: 10%; height: 150px; background-color:' + bgColor +'">' + '<img src="' + jsonRes[i].head + '" style="width: 100%; height: 100%;"/>' + '</td>';
+            str += '<td style="width: 10%; height: 150px; font-size: 44px; background-color: '+ bgColor +'">' + jsonRes[i].user_name + '</td>';
+            str += '<td style="width: 15%; height: 150px; font-size: 44px; background-color:'+ bgColor +'">' + jsonRes[i].phone + '</td>';
+            str += '<td style="width: 5%; height: 150px; font-size: 44px; background-color:'+ bgColor +'">' + replaceGender(jsonRes[i].gender) + '</td>';
+            str += '<td style="width: 5%; height: 150px; font-size: 44px; background-color:'+ bgColor +' ">' + replaceBirthday(jsonRes[i].birthday) + '</td>';
+            str += '<td style="width: 15%; height: 150px; font-size: 44px; background-color:'+ bgColor +' "> <button style="width: 60%; height: 80px; font-size: 35px" onclick="delUser(' + i + ',' + jsonRes[i].user_id + ')">删除</button></td></tr>';
             op1.innerHTML += str
 
         }
