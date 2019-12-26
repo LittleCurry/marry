@@ -6,7 +6,7 @@ marry:
       httpPort: :7782
     redisAddr: 101.37.151.52:6379
     mongoAddr: localhost:27017/bt_prod
-    dbDsn: root:liyunpeng@tcp(localhost:3306)/marry?charset=utf8
+    dbDsn: root:siiva0901@tcp(localhost:3306)/marry?charset=utf8
     bindAddr: :7783
 
   prod:
@@ -16,6 +16,6 @@ marry:
       httpPort: :7782
     redisAddr: 101.37.151.52:6379
     mongoAddr: siiva:siiva0901@production.mongodb.rds.aliyuncs.com:3717/bt_prod
-    dbDsn: root:liyunpeng@tcp(localhost:3306)/marry?charset=utf8
+    dbDsn: root:siiva0901@tcp(localhost:3306)/marry?charset=utf8
     bindAddr: :7783
 
